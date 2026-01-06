@@ -20,6 +20,15 @@ app.post("/hi", (req, res) => {
   res.send(greeting);
 });
 
+// Middleware pour gérer les méthodes non supportées
+app.use((req, res, next) => {
+  if (!req.route) {
+    res.status(405).send("Method Not Allowed");
+  } else {
+    next();
+  }
+});
+
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
