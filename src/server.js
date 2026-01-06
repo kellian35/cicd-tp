@@ -16,6 +16,12 @@ app.post("/hello", (req, res) => {
   res.send(getGreeting(name));
 });
 
+app.post("/hi", (req, res) => {
+  const name = req.headers["x-name"];
+
+  res.send(getGreeting(name));
+});
+
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
