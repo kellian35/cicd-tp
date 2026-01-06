@@ -15,10 +15,6 @@ app.get("/bye/:name?", (req, res) => {
   res.send(farewell);
 });
 
-app.get("/test", (req, res) => {
-  res.send("Test route is working!");
-});
-
 app.post("/hello", (req, res) => {
   const name = req.headers["x-name"];
   res.send(getGreeting(name));
