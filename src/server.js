@@ -20,9 +20,18 @@ app.post("/hi", (req, res) => {
   res.send(greeting);
 });
 
-// Middleware pour gérer les méthodes non supportées
-app.all("*", (req, res) => {
-  res.status(405).send("Method Not Allowed");
+// Middleware pour gérer les méthodes non supportées sur les routes existantes
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    res.status(405).send("Method Not Allowed");
+  } else {
+    next();
+  }
+});
+
+// Middleware pour gérer les routes non trouvées
+app.use((req, res) => {
+  res.status(404).send("Not Found");
 });
 
 if (require.main === module) {
