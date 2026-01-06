@@ -21,12 +21,8 @@ app.post("/hi", (req, res) => {
 });
 
 // Middleware pour gérer les méthodes non supportées
-app.use((req, res, next) => {
-  if (!req.route) {
-    res.status(405).send("Method Not Allowed");
-  } else {
-    next();
-  }
+app.all("*", (req, res) => {
+  res.status(405).send("Method Not Allowed");
 });
 
 if (require.main === module) {
