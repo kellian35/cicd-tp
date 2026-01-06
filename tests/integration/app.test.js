@@ -11,13 +11,13 @@ describe("GET /hello", () => {
   it("should return Hello with a custom name", async () => {
     const res = await request(app).get("/hello/John");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello John!");
+    expect(res.text).toBe("Hello world! From John");
   });
 
   it("should handle names with special characters", async () => {
     const res = await request(app).get("/hello/Jean-Luc");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello Jean-Luc!");
+    expect(res.text).toBe("Hello world! From Jean-Luc");
   });
 });
 
@@ -33,7 +33,7 @@ describe("POST /hello", () => {
       .post("/hello")
       .set("x-name", "Alice");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello Alice!");
+    expect(res.text).toBe("Hello world! From Alice");
   });
 
   it("should handle empty x-name header", async () => {
@@ -41,7 +41,7 @@ describe("POST /hello", () => {
       .post("/hello")
       .set("x-name", "");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello !");
+    expect(res.text).toBe("Hello world!");
   });
 });
 
