@@ -4,11 +4,15 @@ const { getGreeting } = require("./greeting");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// add route get bye with optional name parameter.  AI!
-
 app.get("/hello/:name?", (req, res) => {
   const name = req.params.name;
   res.send(getGreeting(name));
+});
+
+app.get("/bye/:name?", (req, res) => {
+  const name = req.params.name;
+  const farewell = name ? `Bye ${name}!` : "Bye there!";
+  res.send(farewell);
 });
 
 app.post("/hello", (req, res) => {
