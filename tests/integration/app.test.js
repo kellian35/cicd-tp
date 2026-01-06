@@ -46,18 +46,18 @@ describe("POST /hello", () => {
 });
 
 describe("POST /hi", () => {
-  it("should return Hello world when no name is provided", async () => {
+  it("should return Hey there when no name is provided", async () => {
     const res = await request(app).post("/hi");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello world!");
+    expect(res.text).toBe("Hey there!");
   });
 
-  it("should return Hello with a custom name from header", async () => {
+  it("should return Hey with a custom name from header", async () => {
     const res = await request(app)
       .post("/hi")
       .set("x-name", "Bob");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello Bob!");
+    expect(res.text).toBe("Hey Bob!");
   });
 
   it("should return 405 for unsupported methods", async () => {
