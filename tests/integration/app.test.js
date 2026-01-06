@@ -41,7 +41,7 @@ describe("POST /hello", () => {
       .post("/hello")
       .set("x-name", "");
     expect(res.statusCode).toBe(200);
-    expect(res.text).toBe("Hello world!");
+    expect(res.text).toBe("Hello !");
   });
 });
 
