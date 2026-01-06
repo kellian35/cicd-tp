@@ -62,6 +62,6 @@ describe("POST /hi", () => {
 
   it("should return 405 for unsupported methods", async () => {
     const res = await request(app).put("/hi");
-    expect(res.statusCode).toBe(404);
+    expect(res.statusCode).toBe(405);
   });
 });
