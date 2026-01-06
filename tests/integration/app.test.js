@@ -52,7 +52,7 @@ describe("POST /hi", () => {
     expect(res.text).toBe("Hey there!");
   });
 
-  it("should return Hey with a custom name from header", async () => {
+  it("should return Hey with a custom name from header", () => {
     const res = await request(app)
       .post("/hi")
       .set("x-name", "Bob");
