@@ -13,6 +13,12 @@ describe("GET /hello", () => {
     expect(res.statusCode).toBe(200);
     expect(res.text).toBe("Hello John!");
   });
+
+  it("should handle names with special characters", async () => {
+    const res = await request(app).get("/hello/Jean-Luc");
+    expect(res.statusCode).toBe(200);
+    expect(res.text).toBe("Hello Jean-Luc!");
+  });
 });
 
 describe("POST /hello", () => {
@@ -29,6 +35,14 @@ describe("POST /hello", () => {
     expect(res.statusCode).toBe(200);
     expect(res.text).toBe("Hello Alice!");
   });
+
+  it("should handle empty x-name header", async () => {
+    const res = await request(app)
+      .post("/hello")
+      .set("x-name", "");
+    expect(res.statusCode).toBe(200);
+    expect(res.text).toBe("Hello !");
+  });
 });
 
 describe("POST /hi", () => {
@@ -44,5 +58,10 @@ describe("POST /hi", () => {
       .set("x-name", "Bob");
     expect(res.statusCode).toBe(200);
     expect(res.text).toBe("Hello Bob!");
+  });
+
+  it("should return 405 for unsupported methods", async () => {
+    const res = await request(app).put("/hi");
+    expect(res.statusCode).toBe(405);
   });
 });
