@@ -34,10 +34,8 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
       - name: Run tests with Allure
-        run: npm run test:allure
+        run: npx allure run -- npm run test
 
-      - name: Generate Allure report
-        run: npm run allure:generate
 
       - name: Run Allure Action
         uses: allure-framework/allure-action@v0
