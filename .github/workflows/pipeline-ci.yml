@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  pull-requests: write
+  checks: write
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -34,6 +38,12 @@ jobs:
 
       - name: Generate Allure report
         run: npm run allure:generate
+
+      - name: Run Allure Action
+        uses: allure-framework/allure-action@v0
+        with:
+          report-directory: "./allure-report"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Allure report
         uses: actions/upload-artifact@v4
