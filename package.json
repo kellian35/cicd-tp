@@ -5,7 +5,11 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "start": "node src/server.js"
+    "test:allure": "jest --config jest.allure.config.js",
+    "start": "node src/server.js",
+    "allure:generate": "allure generate allure-results -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:clean": "rm -rf allure-results allure-report"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -14,7 +18,10 @@
   },
   "devDependencies": {
     "eslint": "^8.0.0",
-    "jest": "^29.0.0"
+    "jest": "^29.0.0",
+    "allure-jest": "^2.0.0",
+    "allure-js-commons": "^2.0.0",
+    "jest-environment-node": "^29.0.0"
   },
   "engines": {
     "node": ">=22.19.0"
