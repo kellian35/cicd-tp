@@ -6,14 +6,38 @@ const PORT = process.env.PORT || 3000;
 
 app.get("/hello/:name?", (req, res) => {
   const name = req.params.name;
-
   res.send(getGreeting(name));
+});
+
+app.get("/bye/:name?", (req, res) => {
+  const name = req.params.name;
+  const farewell = name ? `Bye ${name}!` : "Bye there!";
+  res.send(farewell);
 });
 
 app.post("/hello", (req, res) => {
   const name = req.headers["x-name"];
-
   res.send(getGreeting(name));
+});
+
+app.post("/hi", (req, res) => {
+  const name = req.headers["x-name"];
+  const greeting = name ? `Hey ${name}!` : "Hey there!";
+  res.send(greeting);
+});
+
+// Middleware pour gérer les méthodes non supportées sur les routes existantes
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    res.status(405).send("Method Not Allowed");
+  } else {
+    next();
+  }
+});
+
+// Middleware pour gérer les routes non trouvées
+app.use((req, res) => {
+  res.status(404).send("Not Found");
 });
 
 if (require.main === module) {

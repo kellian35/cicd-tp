@@ -1,13 +1,11 @@
 function getGreeting(name) {
-  const greeting = `Hello world!`;
-
-  if (name) {
-    const wisher = `From ${name}`;
-
-    return `${greeting} ${wisher}`;
+  if (name === "") {
+    return "Hello !";
   }
-
-  return greeting;
+  if (name && name.trim() !== "") {
+    return `Hello ${name}!`;
+  }
+  return "Hello world!";
 }
 
 module.exports = { getGreeting };
