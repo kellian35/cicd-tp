@@ -27,7 +27,6 @@ jobs:
       - name: Run tests with Allure
         run: npx allure run -- npm run test
 
-
       - name: Run Allure Action
         uses: allure-framework/allure-action@v0
         with:
