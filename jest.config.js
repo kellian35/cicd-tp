@@ -1,6 +1,3 @@
-module.exports = {
-    reporters: [
-      'default',
-      ['allure-jest', { outputDirectory: 'allure-results' }]
-    ]
-  };
+const config = {
+  testEnvironment: "allure-jest/jsdom",
+};

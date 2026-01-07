@@ -1,7 +1,13 @@
 const os = require('os');
 
 module.exports = {
-  testEnvironment: "allure-jest/node",
+  testEnvironment: "node",
+  reporters: [
+    "default",
+    ["allure-jest", {
+      resultsDir: "allure-results"
+    }]
+  ],
   testEnvironmentOptions: {
     environmentInfo: {
       os_platform: os.platform(),
@@ -9,11 +15,5 @@ module.exports = {
       os_version: os.version(),
       node_version: process.version,
     },
-  },
-  reporters: [
-    "default",
-    ["allure-jest", {
-      resultsDir: "allure-results"
-    }]
-  ]
+  }
 };
